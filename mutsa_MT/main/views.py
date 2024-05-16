@@ -19,7 +19,8 @@ def firstPage(request):
                     request.session['lion_id'] = lion.id
                     return redirect('missionPage')
                 else:
-                    messages.error(request, "비밀번호가 틀렸다옹")
+                    # messages.error(request, "비밀번호가 틀렸다옹")
+                    request.session['error_message'] = "비밀번호가 틀렸다옹"
             else:
                 if len(password) == 4 and password.isdigit():
                     lion.password = password  # 비밀번호 설정
@@ -27,9 +28,11 @@ def firstPage(request):
                     request.session['lion_id'] = lion.id
                     return redirect('missionPage')
                 else:
-                    messages.error(request, "비밀번호는 숫자 4자리라옹")  # 비밀번호 유효성 검사 실패
+                    # messages.error(request, "비밀번호는 숫자 4자리라옹") 
+                    request.session['error_message'] = "비밀번호는 숫자 4자리라옹" # 비밀번호 유효성 검사 실패
         except Lion.DoesNotExist:
-            messages.error(request, "당신은 동멋 라이옹이 아니군요!")  # DB에 이름이 없는 경우
+            # messages.error(request, "당신은 동멋 라이옹이 아니군요!")
+            request.session['error_message'] = "당신은 동멋 MT 참가자 라이옹이 아니군요!"  # DB에 이름이 없는 경우
 
     return render(request, 'main/firstPage.html')
 
@@ -48,18 +51,20 @@ def missionPage(request):
 
     else:
         mission = lion.mission
+
     return render(request, 'main/mission.html', {
-            'lion': lion,
-            'mission': mission
-        })
+        'lion': lion,
+        'mission': mission,
+    })
 
 def changeMissionPage(request):
     lion_id = request.session.get('lion_id')
+
     if not lion_id:
         return redirect('firstPage')
     lion = Lion.objects.get(id=lion_id)
-    if lion.mission_changes >= 1:  # 이미 한 번 미션을 변경했는지 확인
-        messages.error(request, "욕심 그만 부리라옹")
+
+    if lion.mission_changes >= 1: # 한 번 이상이면 stop
         return redirect('missionPage')
     
     if lion.mission:
@@ -73,4 +78,4 @@ def changeMissionPage(request):
             lion.save()
             lion.mission_changes += 1  # 미션 변경 횟수 증가
             lion.save()
-    return redirect('missionPage')
+    return render(request, 'main/changeMission.html')

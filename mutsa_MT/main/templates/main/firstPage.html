@@ -47,20 +47,27 @@
           />
         </div>
         <div>
+          <!-- 아래 요 문구도 추가 해줄 수 있어? 말 바꿔두 댐 필요없다 싶으면 지워두 대-->
+          <p>⚠️ 본인의 이름을 작성하세요. 별명 X ⚠️</p>
           <p>⚠️ 비밀번호는 변경할 수 없어요!⚠️</p>
-          <!--왜 안 떠.. -> 뜨게 했지롱-->
+          <!--왜 안 떠.. -> 뜨게 했지롱 꺄악 천재 -->
         </div>
         <button type="submit" id="submitBtn" class="subBtn">미션 뽑기</button>
       </div>
 
-      {% if messages %}
-      <div class="alert-messages">
-        {% for message in messages %}
-        <div class="alert {{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-      </div>
-    </form>
-    {% endif %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          // 세션에서 오류 메시지를 읽어옵니다.
+          var errorMessage = "{{ request.session.error_message|default:'' }}";
+          if (errorMessage) {
+              alert(errorMessage);
+              // 메시지를 표시한 후 세션에서 삭제합니다.
+              "{% if request.session.error_message %}"
+              delete request.session.error_message;
+              "{% endif %}"
+          }
+      });
+      </script>
 
     <!-- 
     <script>
