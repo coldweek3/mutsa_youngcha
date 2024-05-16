@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>멋사 MT ㄱㅂㅈㄱ</title>
+  </head>
+  <body>
+    <div class="body-container">
+      {% include 'shared/header.html' %} {% block content %} {% endblock %}
+      {%include 'shared/footer.html' %}
+    </div>
+  </body>
+</html>
