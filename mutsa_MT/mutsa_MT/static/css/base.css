@@ -80,6 +80,7 @@ body {
   padding: 10px 46px;
   background-color: white;
   cursor: pointer;
+  width: 80%;
 }
 
 .subBtn:hover,

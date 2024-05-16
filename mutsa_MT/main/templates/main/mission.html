@@ -18,13 +18,17 @@
         </div>
         <div class="subscribe">당신의 미션은</div>
         <div id="nicknameContainer">
-          <p>{{mission.description}}</p>
+          <p id="missionContent" class="hidden"></p>
           <p>입니다!</p>
         </div>
         <p>아자잣 💪🏻🦁</p>
       </div>
       <div class="changeMission">
-        <p>만약 미션을 바꾸고 싶다면?? <br />(누르면 재밌겠다..) <br /> 근데 한 번만 되니까 신중해라 ..</p>
+        <p>
+          만약 미션을 바꾸고 싶다면?? <br />
+          (누르면 재밌겠다..) <br />
+          근데 한 번만 되니까 신중해라 ..
+        </p>
 
         <button
           id="submitBtn"
@@ -36,23 +40,23 @@
       </div>
     </div>
 
-    <!-- <script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         var missionContent = document.getElementById("missionContent");
-        var text = "맛있는거 많이 먹기";
+        var text = "{{mission.description}}";
         var index = 0;
 
         function showText() {
           if (index < text.length) {
             missionContent.classList.remove("hidden");
             missionContent.textContent += text[index++];
-            setTimeout(showText, 250);
+            setTimeout(showText, 150);
           }
         }
 
         showText();
       });
-    </script> -->
+    </script>
   </body>
 </html>
 

@@ -17,6 +17,7 @@
 .nickname {
   color: orange;
   font-weight: bold;
+  margin-right: 5px;
 }
 
 #missionContent {
@@ -43,6 +44,7 @@
   align-items: center;
   gap: 30px;
   text-align: center;
+  line-height: 20px;
 }
 
 #submitBtn {
