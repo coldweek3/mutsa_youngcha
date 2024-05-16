@@ -61,3 +61,13 @@
 input:focus {
   outline: none;
 }
+
+.alert-messages {
+  width: auto;
+  padding: 20px;
+  background-color: white;
+  color: rgb(255, 115, 0);
+  z-index: 1000;
+  border-radius: 8px;
+  text-align: center;
+}

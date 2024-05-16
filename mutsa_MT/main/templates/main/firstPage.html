@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} 
+
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,6 +19,8 @@
       이름과 비밀번호(숫자 4자리)를 <br />
       입력하시옹
     </div>
+    <form method="POST" action="{% url 'firstPage' %}">
+      {% csrf_token %}
     <div class="inputContainers">
       <div class="inputContainer">
         <p id="inputName">이름</p>
@@ -37,11 +41,26 @@
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
           maxlength="4"
           minlength="4"
+          required
         />
       </div>
+      <div>
+        <p>* 비밀번호는 변경할 수 없어요!</p> <!--왜 안 떠..-->
+      </div>
     </div>
-    <button id="submitBtn" class="subBtn">미션 뽑기</button>
-
+    <button type="submit" id="submitBtn" class="subBtn">미션 뽑기</button>
+  </form>
+  {% if messages %}
+  <div class="alert-messages">
+      {% for message in messages %}
+      <div class="alert {{ message.tags }}">
+          {{ message }}
+      </div>
+      {% endfor %}
+  </div>
+  {% endif %}
+  
+<!-- 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var submitBtn = document.getElementById("submitBtn");
@@ -64,11 +83,11 @@
             }
           } else {
             // 명단에 없는 이름인 경우
-            alert("멋사 12기 엠티 참여자가 아닌걸요 ?!");
+            alert("멋사 12기 엠티 참여자가 아닌 걸요 ?!");
           }
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
 
