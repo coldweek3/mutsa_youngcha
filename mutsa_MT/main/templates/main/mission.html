@@ -6,10 +6,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="{% static 'css/mission.css' %}" />
   </head>
   <body>
-    <div>hi</div>
+    <div class="missionWrapper">
+      <div class="missionContainer">
+        <div id="nicknameContainer">
+          <!-- 이름, 미션 내용 db에서 매칭시켜줘야 함 ㅠ -->
+          <p class="nickname">오찬주</p>
+          <p>님,</p>
+        </div>
+        <div class="subscribe">당신의 미션은</div>
+        <div id="nicknameContainer">
+          <p id="missionContent" class="hidden"></p>
+          <p>입니다!</p>
+        </div>
+        <p>아자잣 💪🏻🦁</p>
+      </div>
+      <div class="changeMission">
+        <p>만약 미션을 바꾸고 싶다면?? <br />(누르면 재밌겠다..)</p>
+        <button
+          id="submitBtn"
+          class="subBtn"
+          onclick="location.href='/changeMissionPage';"
+        >
+          미션 바꾸러가기~!
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var missionContent = document.getElementById("missionContent");
+        var text = "맛있는거 많이 먹기";
+        var index = 0;
+
+        function showText() {
+          if (index < text.length) {
+            missionContent.classList.remove("hidden");
+            missionContent.textContent += text[index++];
+            setTimeout(showText, 250);
+          }
+        }
+
+        showText();
+      });
+    </script>
   </body>
 </html>
 

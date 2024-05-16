@@ -1,0 +1,54 @@
+.missionWrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.missionContainer {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 60%;
+  font-size: 20px;
+}
+.nickname {
+  color: orange;
+  font-weight: bold;
+}
+
+#missionContent {
+  color: orange;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.hidden {
+  color: orange;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#nicknameContainer {
+  display: flex;
+}
+
+.changeMission {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+}
+
+#submitBtn {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

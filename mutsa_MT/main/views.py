@@ -9,3 +9,6 @@ def firstPage(request):
 
 def missionPage(request):
     return render(request, 'main/mission.html')
+
+def changeMissionPage(request):
+    return render(request, 'main/changeMission.html')
