@@ -13,12 +13,12 @@
       <div class="missionContainer">
         <div id="nicknameContainer">
           <!-- 이름, 미션 내용 db에서 매칭시켜줘야 함 ㅠ -->
-          <p class="nickname">오찬주</p>
-          <p>님,</p>
+          <p class="nickname">{{lion.name}}</p>
+          <p>라이옹님,</p>
         </div>
         <div class="subscribe">당신의 미션은</div>
         <div id="nicknameContainer">
-          <p id="missionContent" class="hidden"></p>
+          <p>{{mission.description}}</p>
           <p>입니다!</p>
         </div>
         <p>아자잣 💪🏻🦁</p>
@@ -30,12 +30,12 @@
           class="subBtn"
           onclick="location.href='/changeMissionPage';"
         >
-          미션 바꾸러가기~!
+          미션 바꾸러 가기~!
         </button>
       </div>
     </div>
 
-    <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         var missionContent = document.getElementById("missionContent");
         var text = "맛있는거 많이 먹기";
@@ -51,7 +51,7 @@
 
         showText();
       });
-    </script>
+    </script> -->
   </body>
 </html>
 
