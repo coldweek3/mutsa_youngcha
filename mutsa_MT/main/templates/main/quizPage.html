@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}" />
+    <style>
+      .selected {
+        background-color: orange;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Wrapper">
+      <div class="qBox">운영진 수는?</div>
+      <div class="answerList">
+        <div class="answer" onclick="selectAnswer(this)">1. 20명</div>
+        <div class="answer" onclick="selectAnswer(this)">2. 23명</div>
+        <div class="answer" onclick="selectAnswer(this)">3. 25명</div>
+        <div class="answer" onclick="selectAnswer(this)">4. 30명</div>
+      </div>
+      <button class="answerBtn">제출하기</button>
+    </div>
+    <script>
+      function selectAnswer(answerElement) {
+        var answers = document.querySelectorAll(".answer");
+        answers.forEach(function (answer) {
+          answer.classList.remove("selected");
+        });
+        answerElement.classList.add("selected");
+      }
+    </script>
+  </body>
+</html>
+
+{% endblock %}

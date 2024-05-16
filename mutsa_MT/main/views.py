@@ -52,7 +52,9 @@ def missionPage(request):
     else:
         mission = lion.mission
 
-    return render(request, 'main/mission.html', {
+
+    #여기 경로 main/mission.html로 수정해야 함
+    return render(request, 'main/changeMission.html', {
         'lion': lion,
         'mission': mission,
     })
@@ -79,3 +81,6 @@ def changeMissionPage(request):
             lion.mission_changes += 1  # 미션 변경 횟수 증가
             lion.save()
     return render(request, 'main/changeMission.html')
+
+def quizPage(request):
+    return render(request, 'main/quizPage.html')

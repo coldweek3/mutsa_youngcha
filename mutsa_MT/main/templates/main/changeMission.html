@@ -6,10 +6,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/static/css/mission.css" />
+    <link rel="stylesheet" href="{% static 'css/mission.css' %}" />
   </head>
   <body>
-    <div>hi</div>
+    <div class="Wrapper">
+      <div class="image">
+        <img
+          class="yareImg"
+          src="{% static 'image/yareyare.png' %}"
+          alt="인트로 이미지"
+        />
+      </div>
+      <div class="desText">
+        퀴즈 기회 단, 1번 드리니<br />
+        맞히면 미션 change <br />
+        틀리면 킵꼬잉 ~
+      </div>
+      <button class="quizBtn" onclick="location.href='/quizPage/';">
+        퀴즈 풀러가기
+      </button>
+    </div>
   </body>
 </html>
 
