@@ -19,7 +19,7 @@ def firstPage(request):
                     request.session['lion_id'] = lion.id
                     return redirect('missionPage')
                 else:
-                    messages.error(request, "비밀번호가 틀렸습니다.")
+                    messages.error(request, "비밀번호가 틀렸다옹")
             else:
                 if len(password) == 4 and password.isdigit():
                     lion.password = password  # 비밀번호 설정
@@ -58,6 +58,10 @@ def changeMissionPage(request):
     if not lion_id:
         return redirect('firstPage')
     lion = Lion.objects.get(id=lion_id)
+    if lion.mission_changes >= 1:  # 이미 한 번 미션을 변경했는지 확인
+        messages.error(request, "욕심 그만 부리라옹")
+        return redirect('missionPage')
+    
     if lion.mission:
         lion.mission.is_assigned = False
         lion.mission.save()
@@ -66,5 +70,7 @@ def changeMissionPage(request):
             lion.mission = new_mission
             new_mission.is_assigned = True
             new_mission.save()
+            lion.save()
+            lion.mission_changes += 1  # 미션 변경 횟수 증가
             lion.save()
     return redirect('missionPage')
