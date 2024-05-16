@@ -52,9 +52,7 @@ def missionPage(request):
     else:
         mission = lion.mission
 
-
-    #여기 경로 main/mission.html로 수정해야 함
-    return render(request, 'main/changeMission.html', {
+    return render(request, 'main/mission.html', {
         'lion': lion,
         'mission': mission,
     })
