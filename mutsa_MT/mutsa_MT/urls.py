@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.intropage, name="intropage"),
     path('firstPage/', views.firstPage, name="firstPage"),
+     path('missionPage/', views.missionPage, name="missionPage"),
 ]

@@ -6,3 +6,6 @@ def intropage(request):
 
 def firstPage(request):
     return render(request, 'main/firstPage.html')
+
+def missionPage(request):
+    return render(request, 'main/mission.html')
