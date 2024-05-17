@@ -19,7 +19,7 @@
     </div>
     <form
       method="POST"
-      action="{% url 'firstPage' %}"
+      action="{% url 'create' %}"
       style="width: 100%; height: 70%"
     >
       {% csrf_token %}
@@ -53,51 +53,23 @@
           <!--왜 안 떠.. -> 뜨게 했지롱 꺄악 천재 -->
         </div>
         <button type="submit" id="submitBtn" class="subBtn">미션 뽑기</button>
+      </form>
       </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          // 세션에서 오류 메시지를 읽어옵니다.
-          var errorMessage = "{{ request.session.error_message|default:'' }}";
-          if (errorMessage) {
-              alert(errorMessage);
-              // 메시지를 표시한 후 세션에서 삭제합니다.
-              "{% if request.session.error_message %}"
-              delete request.session.error_message;
-              "{% endif %}"
-          }
-      });
-      </script>
-
-    <!-- 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var submitBtn = document.getElementById("submitBtn");
-        var inputName = document.getElementById("username");
-        var inputPassword = document.getElementById("password");
-
-        submitBtn.addEventListener("click", function () {
-          var name = inputName.value.trim();
-          var password = inputPassword.value.trim();
-          //추후 명단으로 이름 수정하기
-          var validNames = ["오찬주", "박영신", "김윤성"];
-
-          if (validNames.includes(name)) {
-            // 유효한 이름이면
-            if (password.length === 4 && !isNaN(password)) {
-              // 비밀번호가 4자리이고 숫자인 경우, 페이지 이동
-              window.location.href = "/missionPage";
-            } else {
-              alert("비밀번호는 숫자 4자리여야 합니다.");
-            }
-          } else {
-            // 명단에 없는 이름인 경우
-            alert("멋사 12기 엠티 참여자가 아닌 걸요 ?!");
-          }
-        });
-      });
-    </script> -->
   </body>
 </html>
 
+
 {% endblock %}
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      var errorMessage = "{{ request.session.error_message|default:'' }}";
+      if (errorMessage) {
+          alert(errorMessage);
+          "{% if request.session.error_message %}"
+          delete request.session.error_message;
+          "{% endif %}"
+      }
+  });
+</script>

@@ -8,6 +8,9 @@ def intropage(request):
     return render(request, 'main/intro.html')
 
 def firstPage(request):
+    return render(request, 'main/firstPage.html')
+    
+def create(request):
     if request.method == 'POST':
         name = request.POST.get('username')
         password = request.POST.get('password')
@@ -21,6 +24,7 @@ def firstPage(request):
                 else:
                     # messages.error(request, "비밀번호가 틀렸다옹")
                     request.session['error_message'] = "비밀번호가 틀렸다옹"
+                
             else:
                 if len(password) == 4 and password.isdigit():
                     lion.password = password  # 비밀번호 설정
@@ -30,10 +34,11 @@ def firstPage(request):
                 else:
                     # messages.error(request, "비밀번호는 숫자 4자리라옹") 
                     request.session['error_message'] = "비밀번호는 숫자 4자리라옹" # 비밀번호 유효성 검사 실패
+
+
         except Lion.DoesNotExist:
             # messages.error(request, "당신은 동멋 라이옹이 아니군요!")
             request.session['error_message'] = "당신은 동멋 MT 참가자 라이옹이 아니군요!"  # DB에 이름이 없는 경우
-
     return render(request, 'main/firstPage.html')
 
 def missionPage(request):

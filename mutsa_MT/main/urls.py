@@ -19,6 +19,7 @@ from main import views
 
 urlpatterns = [
     path('', views.intropage, name="intropage"),
+    path('create/', views.create, name="create"),
     path('firstPage/', views.firstPage, name="firstPage"),
     path('missionPage/', views.missionPage, name="missionPage"),
     path('changeMissionPage/', views.changeMissionPage, name="changeMissionPage"),
