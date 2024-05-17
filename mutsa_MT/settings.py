@@ -130,9 +130,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['49.50.161.64'] # only hostname만?
-CORS_ORIGIN_WHITELIST = ['49.50.161.64']
+CSRF_TRUSTED_ORIGINS = [    
+    '49.50.161.64',
+    'http://49.50.161.64/'
+    ] # only hostname만?
+
+CORS_ORIGIN_WHITELIST = [    
+    '49.50.161.64',
+    'http://49.50.161.64/'
+    ]
 
 CORS_ALLOW_WHITELIST = [
-    '49.50.161.64'
+    '49.50.161.64',
+    'http://49.50.161.64/'
 ]
