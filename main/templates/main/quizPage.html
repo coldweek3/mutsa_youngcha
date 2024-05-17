@@ -18,7 +18,7 @@
       <form method="POST" action="{% url 'quizPage' %}">
         {% csrf_token %}
         <div class="qBox">{{ quiz.question }}</div>
-        <input type="text" name="user_answer" placeholder="여기에 답을 입력하세요" />
+        <input type="text" name="user_answer" placeholder="과연 동방 비번 네 자리는?!" />
         <button type="submit" class="answerBtn">제출하기</button>
       </form>
     </div>
