@@ -22,4 +22,5 @@ urlpatterns = [
     path('firstPage/', views.firstPage, name="firstPage"),
     path('missionPage/', views.missionPage, name="missionPage"),
     path('changeMissionPage/', views.changeMissionPage, name="changeMissionPage"),
+    path('quizPage/', views.quizPage, name="quizPage"),
 ]

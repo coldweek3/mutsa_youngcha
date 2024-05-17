@@ -54,3 +54,46 @@
   align-items: center;
   cursor: pointer;
 }
+
+/* changeMission.html */
+
+.Wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  margin-top: 20px;
+}
+.yareImg {
+  width: 90%;
+}
+
+.desText {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 25px;
+  height: 30%;
+  text-align: center;
+  font-size: x-large;
+}
+
+.quizBtn {
+  border-radius: 25px;
+  border: 2px solid black;
+  padding: 10px 46px;
+  background-color: white;
+  cursor: pointer;
+  width: 80%;
+}
+
+.quizBtn:hover {
+  background-color: orange;
+  color: whitesmoke;
+  border-color: orange;
+}

@@ -79,3 +79,6 @@ def changeMissionPage(request):
             lion.mission_changes += 1  # 미션 변경 횟수 증가
             lion.save()
     return render(request, 'main/changeMission.html')
+
+def quizPage(request):
+    return render(request, 'main/quizPage.html')

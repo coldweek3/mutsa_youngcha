@@ -30,12 +30,7 @@
           근데 한 번만 되니까 신중해라 ..
         </p>
 
-        <button
-          id="submitBtn"
-          class="subBtn"
-        >
-          미션 바꾸러 가기~!
-        </button>
+        <button id="submitBtn" class="subBtn">미션 바꾸러 가기</button>
       </div>
     </div>
 
@@ -55,14 +50,16 @@
 
         showText();
 
-        document.getElementById('submitBtn').addEventListener('click', function() {
-          var missionChanges = "{{lion.mission_changes}}";
-          if (missionChanges >= 1) {
-              alert('욕심 그만 부리라옹');
-          } else {
-              location.href = '/changeMissionPage';
-          }
-        });
+        document
+          .getElementById("submitBtn")
+          .addEventListener("click", function () {
+            var missionChanges = "{{lion.mission_changes}}";
+            if (missionChanges >= 1) {
+              alert("욕심 그만 부리라옹");
+            } else {
+              location.href = "/changeMissionPage";
+            }
+          });
       });
     </script>
   </body>
