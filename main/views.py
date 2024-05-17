@@ -64,7 +64,7 @@ def changeMissionPage(request):
     if lion.mission_changes >= 1:  # 한 번 변경했다면 다시 변경할 수 없음
         return redirect('missionPage')
 
-    if lion.quiz_attempted == 1:  # 한 번 변경했다면 다시 변경할 수 없음
+    if lion.quiz_attempted == 1:  # 퀴즈 한 번이라도 시도했으면 놉
         return redirect('missionPage')
 
     # 미션 변경 페이지로 리디렉트
