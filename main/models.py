@@ -22,6 +22,7 @@ class Lion(models.Model):
     password = models.CharField(max_length=4, blank=True, null=True)
     mission = models.ForeignKey(Mission, on_delete=models.SET_NULL, null=True)
     mission_changes = models.IntegerField(default=0) # 미션 변경 횟수(한 번으로 제한!)
+    quiz_attempted = models.BooleanField(default=False)  # 퀴즈 시도 여부
 
     def __str__(self):
         return self.name

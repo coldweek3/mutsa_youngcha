@@ -61,7 +61,16 @@
             }
           });
 
-        // 세션 메시지 처리
+      var submitBtn = document.getElementById("submitBtn");
+      submitBtn.addEventListener("click", function () {
+        var quizAttempted = "{{ lion.quiz_attempted }}";
+        if (quizAttempted === "True") {
+          alert("욕심 그만 부리라옹");
+        } else {
+          location.href = "/changeMissionPage";
+        }
+      });
+
         ("{% if message %}");
         alert("{{ message }}");
         ("{% endif %}");
