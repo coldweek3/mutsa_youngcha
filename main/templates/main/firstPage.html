@@ -56,17 +56,9 @@
       </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          // 세션에서 오류 메시지를 읽어옵니다.
-          var errorMessage = "{{ request.session.error_message|default:'' }}";
-          if (errorMessage) {
-              alert(errorMessage);
-              // 메시지를 표시한 후 세션에서 삭제합니다.
-              "{% if request.session.error_message %}"
-              delete request.session.error_message;
-              "{% endif %}"
-          }
-      });
+        "{% if message %}"
+        alert("{{ message }}");
+        "{% endif %}"
       </script>
   </body>
 </html>

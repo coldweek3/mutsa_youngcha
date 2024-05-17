@@ -34,7 +34,10 @@ def firstPage(request):
             # messages.error(request, "당신은 동멋 라이옹이 아니군요!")
             request.session['error_message'] = "당신은 동멋 MT 참가자 라이옹이 아니군요!"  # DB에 이름이 없는 경우
 
-    return render(request, 'main/firstPage.html')
+    message = request.session.pop('error_message', None)
+    return render(request, 'main/firstPage.html', {
+        'message': message
+    })
 
 def missionPage(request):
     lion_id = request.session.get('lion_id')
@@ -42,9 +45,13 @@ def missionPage(request):
         return redirect('firstPage')
     lion = Lion.objects.get(id=lion_id)
 
+    # 세션에서 메시지 가져오기
+    message = request.session.pop('error_message', None)
+
     return render(request, 'main/mission.html', {
         'lion': lion,
         'mission': lion.mission,
+        'message': message  # 템플릿에 메시지 전달
     })
 
 def changeMissionPage(request):
@@ -67,7 +74,8 @@ def quizPage(request):
         user_answer = request.POST.get('user_answer')
         quiz = Quiz.objects.first()  # 첫 번째 퀴즈를 가져옴
         if user_answer == quiz.answer:
-            message = "정답입니다!! 과연 당신의 미션은?"
+            # message = "정답입니다!! 과연 당신의 미션은?"
+            request.session['error_message'] = "정답입니다!! 과연 당신의 미션은?"
             lion = Lion.objects.get(id=request.session['lion_id'])
             new_mission = Mission.assign_random()
             lion.mission = new_mission
@@ -76,10 +84,10 @@ def quizPage(request):
             lion.mission_changes += 1  # 미션 변경 횟수 1 증가
             lion.save()
         else:
-            message = "땡!!!!"
+            request.session['error_message'] = "땡!!!!"
             lion = Lion.objects.get(id=request.session['lion_id'])
 
-        messages.info(request, message)
+        # messages.info(request, message)
         return redirect('missionPage')
 
     quiz = Quiz.objects.first()  # 첫 번째 퀴즈를 로드
