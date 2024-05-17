@@ -15,11 +15,24 @@
   </head>
   <body>
     <div class="Wrapper">
-      <form method="POST" action="{% url 'quizPage' %}">
+      <form
+        method="POST"
+        action="{% url 'quizPage' %}"
+        style="width: 100%; height: 100%"
+      >
         {% csrf_token %}
         <div class="qBox">{{ quiz.question }}</div>
-        <input type="text" name="user_answer" placeholder="과연 동방 비번 네 자리는?!" />
-        <button type="submit" class="answerBtn">제출하기</button>
+        <div class="answer">
+          <input
+            class="inputBox"
+            type="text"
+            name="user_answer"
+            placeholder="과연 동방 비번 네 자리는?!"
+          />
+        </div>
+        <div class="answer">
+          <button type="submit" class="answerBtn">제출하기</button>
+        </div>
       </form>
     </div>
     <script>
