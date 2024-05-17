@@ -15,14 +15,12 @@
   </head>
   <body>
     <div class="Wrapper">
-      <div class="qBox">운영진 수는?</div>
-      <div class="answerList">
-        <div class="answer" onclick="selectAnswer(this)">1. 20명</div>
-        <div class="answer" onclick="selectAnswer(this)">2. 23명</div>
-        <div class="answer" onclick="selectAnswer(this)">3. 25명</div>
-        <div class="answer" onclick="selectAnswer(this)">4. 30명</div>
-      </div>
-      <button class="answerBtn">제출하기</button>
+      <form method="POST" action="{% url 'quizPage' %}">
+        {% csrf_token %}
+        <div class="qBox">{{ quiz.question }}</div>
+        <input type="text" name="user_answer" placeholder="여기에 답을 입력하세요" />
+        <button type="submit" class="answerBtn">제출하기</button>
+      </form>
     </div>
     <script>
       function selectAnswer(answerElement) {
