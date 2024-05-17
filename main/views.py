@@ -64,6 +64,9 @@ def changeMissionPage(request):
     if lion.mission_changes >= 1:  # 한 번 변경했다면 다시 변경할 수 없음
         return redirect('missionPage')
 
+    if lion.quiz_attempted == 1:  # 한 번 변경했다면 다시 변경할 수 없음
+        return redirect('missionPage')
+
     # 미션 변경 페이지로 리디렉트
     return render(request, 'main/changeMission.html', {
         'lion': lion
@@ -73,6 +76,11 @@ def quizPage(request):
     if request.method == "POST":
         user_answer = request.POST.get('user_answer')
         quiz = Quiz.objects.first()  # 첫 번째 퀴즈를 가져옴
+
+        lion = Lion.objects.get(id=request.session['lion_id'])
+        lion.quiz_attempted = True  # 퀴즈 시도 표시
+        lion.save()
+
         if user_answer == quiz.answer:
             # message = "정답입니다!! 과연 당신의 미션은?"
             request.session['error_message'] = "정답입니다!! 과연 당신의 미션은?"
@@ -85,7 +93,6 @@ def quizPage(request):
             lion.save()
         else:
             request.session['error_message'] = "땡!!!!"
-            lion = Lion.objects.get(id=request.session['lion_id'])
 
         # messages.info(request, message)
         return redirect('missionPage')
