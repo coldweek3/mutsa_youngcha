@@ -4,15 +4,17 @@ import random
 class Mission(models.Model):
     description = models.CharField(max_length=200)
     is_assigned = models.BooleanField(default=False)
+    assigned_count = models.IntegerField(default=0)  # 미션을 받은 사용자 수를 추적
 
     def __str__(self):
         return self.description
 
     @classmethod
     def assign_random(cls):
-        unassigned_missions = cls.objects.filter(is_assigned=False)
-        if unassigned_missions:
-            return random.choice(unassigned_missions)
+        # 할당 가능한 미션은 최대 3명까지만 받을 수 있도록 조정
+        possible_missions = cls.objects.filter(assigned_count__lt=3)
+        if possible_missions:
+            return random.choice(possible_missions)
         return None
 
 class Lion(models.Model):
@@ -23,3 +25,10 @@ class Lion(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Quiz(models.Model):
+    question = models.CharField(max_length=255)  # 퀴즈 문제
+    answer = models.CharField(max_length=255)  # 퀴즈 정답
+
+    def __str__(self):
+        return f"Question: {self.question} - Answer: {self.answer}"

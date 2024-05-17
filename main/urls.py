@@ -23,4 +23,5 @@ urlpatterns = [
     path('missionPage/', views.missionPage, name="missionPage"),
     path('changeMissionPage/', views.changeMissionPage, name="changeMissionPage"),
     path('quizPage/', views.quizPage, name="quizPage"),
+    # path('assign-mission/', views.assign_mission_to_lion, name="assign_mission"),
 ]

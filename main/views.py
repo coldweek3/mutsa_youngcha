@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Lion, Mission
+from .models import Lion, Mission, Quiz
 import random
 
 # Create your views here.
@@ -41,44 +41,62 @@ def missionPage(request):
     if not lion_id:
         return redirect('firstPage')
     lion = Lion.objects.get(id=lion_id)
-    if not lion.mission:
-        mission = Mission.assign_random()
-        if mission:
-            lion.mission = mission
-            mission.is_assigned = True
-            mission.save()
-            lion.save()
-
-    else:
-        mission = lion.mission
 
     return render(request, 'main/mission.html', {
         'lion': lion,
-        'mission': mission,
+        'mission': lion.mission,
     })
 
 def changeMissionPage(request):
     lion_id = request.session.get('lion_id')
-
     if not lion_id:
         return redirect('firstPage')
     lion = Lion.objects.get(id=lion_id)
 
-    if lion.mission_changes >= 1: # 한 번 이상이면 stop
+    # 사용자가 이미 미션을 변경했는지 확인
+    if lion.mission_changes >= 1:  # 한 번 변경했다면 다시 변경할 수 없음
         return redirect('missionPage')
-    
-    if lion.mission:
-        lion.mission.is_assigned = False
-        lion.mission.save()
-        new_mission = Mission.assign_random()
-        if new_mission:
+
+    # 미션 변경 페이지로 리디렉트
+    return render(request, 'main/changeMission.html', {
+        'lion': lion
+    })
+
+def quizPage(request):
+    if request.method == "POST":
+        user_answer = request.POST.get('user_answer')
+        quiz = Quiz.objects.first()  # 첫 번째 퀴즈를 가져옴
+        if user_answer == quiz.answer:
+            message = "정답입니다!! 과연 당신의 미션은?"
+            lion = Lion.objects.get(id=request.session['lion_id'])
+            new_mission = Mission.assign_random()
             lion.mission = new_mission
             new_mission.is_assigned = True
             new_mission.save()
+            lion.mission_changes += 1  # 미션 변경 횟수 1 증가
             lion.save()
-            lion.mission_changes += 1  # 미션 변경 횟수 증가
-            lion.save()
-    return render(request, 'main/changeMission.html')
+        else:
+            message = "땡!!!!"
+            lion = Lion.objects.get(id=request.session['lion_id'])
 
-def quizPage(request):
-    return render(request, 'main/quizPage.html')
+        messages.info(request, message)
+        return redirect('missionPage')
+
+    quiz = Quiz.objects.first()  # 첫 번째 퀴즈를 로드
+    return render(request, 'main/quizPage.html', {'quiz': quiz})
+
+# def assign_mission_to_lion(request):
+#     lion_id = request.session.get('lion_id')
+#     if not lion_id:
+#         return redirect('login')
+#     lion = Lion.objects.get(id=lion_id)
+#     mission = Mission.assign_random()
+#     if mission:
+#         lion.mission = mission
+#         mission.assigned_count += 1
+#         mission.save()
+#         lion.save()
+#         messages.success(request, "새로운 미션을 할당받았습니다.")
+#     else:
+#         messages.error(request, "할당 가능한 미션 없음")
+#     return redirect('some_view')
