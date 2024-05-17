@@ -130,32 +130,24 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'http://49.50.161.64',
-#     'https://49.50.161.64',
-#     'http://localhost',
-#     'https://localhost',
-#     'http://127.0.0.1',
-#     'https://127.0.0.1'
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    'http://49.50.161.64',
+    'https://49.50.161.64',
+    'http://localhost',
+    'https://localhost',
+    'http://127.0.0.1',
+    'https://127.0.0.1'
+]
 
-# CORS_ORIGIN_WHITELIST = [
-#     'http://49.50.161.64',
-#     'https://49.50.161.64',
-#     'http://localhost',
-#     'https://localhost',
-#     'http://127.0.0.1',
-#     'https://127.0.0.1'
-# ]
+CORS_ALLOW_WHITELIST = [
+    'http://49.50.161.64',
+    'https://49.50.161.64',
+    'http://localhost',
+    'https://localhost',
+    'http://127.0.0.1',
+    'https://127.0.0.1'
+]
 
-# CORS_ALLOW_WHITELIST = [
-#     'http://49.50.161.64',
-#     'https://49.50.161.64',
-#     'http://localhost',
-#     'https://localhost',
-#     'http://127.0.0.1',
-#     'https://127.0.0.1'
-# ]
 CORS_ORIGIN_WHITELIST = (
     'http://49.50.161.64',
     'https://49.50.161.64',
@@ -164,4 +156,5 @@ CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1',
     'https://127.0.0.1'
 )
+
 CORS_ALLOW_CREDENTIALS = True
