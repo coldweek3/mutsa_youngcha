@@ -17,9 +17,9 @@
           <p>라이옹님,</p>
         </div>
         <div class="subscribe">당신의 미션은</div>
-        <div id="nicknameContainer">
-          <p id="missionContent" class="hidden"></p>
-          <p>입니다!</p>
+        <div id="MissionContainer">
+          <div id="missionContent" class="hidden"></div>
+          <div>입니다!</div>
         </div>
         <p>아자잣 💪🏻🦁</p>
       </div>
@@ -61,10 +61,10 @@
             }
           });
 
-                  // 세션 메시지 처리
-        "{% if message %}"
+        // 세션 메시지 처리
+        ("{% if message %}");
         alert("{{ message }}");
-        "{% endif %}"
+        ("{% endif %}");
       });
     </script>
   </body>

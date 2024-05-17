@@ -13,6 +13,7 @@
   width: 100%;
   height: 60%;
   font-size: 20px;
+  padding: 16px;
 }
 .nickname {
   color: orange;
@@ -24,6 +25,7 @@
   color: orange;
   font-weight: bold;
   text-decoration: underline;
+  line-height: 28px;
 }
 
 .hidden {
@@ -34,6 +36,11 @@
 
 #nicknameContainer {
   display: flex;
+}
+
+#MissionContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .changeMission {
