@@ -60,6 +60,11 @@
               location.href = "/changeMissionPage";
             }
           });
+
+                  // 세션 메시지 처리
+        "{% if message %}"
+        alert("{{ message }}");
+        "{% endif %}"
       });
     </script>
   </body>
